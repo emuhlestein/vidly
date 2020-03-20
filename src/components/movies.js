@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { getMovies, deleteMovie } from "../services/fakeMovieService";
-import Pagination from '../common/pagination';
-import ListGroup from "../common/listGroup";
+import Pagination from './common/pagination';
+import ListGroup from "./common/listGroup";
+import NavBar from './common/navbar';
 import MoviesTable from "../components/moviesTable"
 import { paginate } from '../utils/paginate';
 import { getGenres } from '../services/fakeGenreService';
@@ -116,33 +117,40 @@ class Movies extends Component {
         const { totalCount, data: movies } = this.getPagedData();
 
         return (
-            <div className="row">
-                <div className="col-3">
-                    <ListGroup
-                        items={this.state.genres}
-                        selectedItem={this.state.selectedGenre}
-                        onItemSelect={this.handleGenreSelect}
-                    ></ListGroup>
-                </div>
-                <div className="col">
-                    <div>
-                        <p>Showing {totalCount} movies in the database.</p>
-                        <MoviesTable
-                            movies={movies}
-                            sortColumn={this.state.sortColumn}
-                            onSort={this.handleSort}
-                            onLike={this.handleLike}
-                            onDelete={this.handleDelete}>
-                        </MoviesTable>
-                        <Pagination
-                            pageSize={pageSize}
-                            itemsCount={totalCount}
-                            currentPage={currentPage}
-                            onPageChange={this.handlePageChange}
-                        ></Pagination>
+            <div>
+                <div className="row">
+                    <div className="col">
+                        <NavBar></NavBar>
                     </div>
                 </div>
-            </div >
+                <div className="row">
+                    <div className="col-3">
+                        <ListGroup
+                            items={this.state.genres}
+                            selectedItem={this.state.selectedGenre}
+                            onItemSelect={this.handleGenreSelect}
+                        ></ListGroup>
+                    </div>
+                    <div className="col">
+                        <div>
+                            <p>Showing {totalCount} movies in the database.</p>
+                            <MoviesTable
+                                movies={movies}
+                                sortColumn={this.state.sortColumn}
+                                onSort={this.handleSort}
+                                onLike={this.handleLike}
+                                onDelete={this.handleDelete}>
+                            </MoviesTable>
+                            <Pagination
+                                pageSize={pageSize}
+                                itemsCount={totalCount}
+                                currentPage={currentPage}
+                                onPageChange={this.handlePageChange}
+                            ></Pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 
