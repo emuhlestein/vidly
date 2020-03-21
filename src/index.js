@@ -6,10 +6,11 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import Movies from "./components/movies";
+import App from "./App";
 
 ReactDOM.render(
     <BrowserRouter>
-        <Movies />
+        <App />
     </BrowserRouter>, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
